@@ -10,7 +10,9 @@ class CustomFloatingActionButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return FloatingActionButton(
       onPressed: () async {
-        String barcodeScanRes = await FlutterBarcodeScanner.scanBarcode( '#3D8BEF', 'CANCEL', false, ScanMode.QR);
+        //String barcodeScanRes = await FlutterBarcodeScanner.scanBarcode( '#3D8BEF', 'CANCEL', false, ScanMode.QR);
+        String barcodeScanRes = 'https://www.udemy.com';
+        print(barcodeScanRes);
       },
       child:  const Icon(Icons.filter_center_focus),);
   }
