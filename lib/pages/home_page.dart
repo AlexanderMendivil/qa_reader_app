@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qa_reader/pages/directions_page.dart';
 import 'package:qa_reader/pages/maps_page.dart';
+import 'package:qa_reader/providers/db_provider.dart';
 import 'package:qa_reader/providers/ui_provider.dart';
 
 import '../widgets/widgets.dart';
@@ -36,6 +37,7 @@ class _HomePageBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    DBProvider.db.database;
     final uiProvider = Provider.of<UIProvider>(context);
     final currentIndex = uiProvider.selectedMenuOpt;
 
