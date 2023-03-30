@@ -38,7 +38,9 @@ class _HomePageBody extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final tempScan = ScanModel(valor: 'https://www.udemy.com');
-    DBProvider.db.nuevoScan(tempScan);
+    // DBProvider.db.nuevoScan(tempScan);
+    DBProvider.db.getScanById(8).then((value) => print('cosa: ${value?.valor}'));
+    DBProvider.db.getScansByType('http').then((value) => print('cosa: $value'));
     final uiProvider = Provider.of<UIProvider>(context);
     final currentIndex = uiProvider.selectedMenuOpt;
 
