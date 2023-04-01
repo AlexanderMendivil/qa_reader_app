@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:qa_reader/pages/directions_page.dart';
 import 'package:qa_reader/pages/maps_page.dart';
 import 'package:qa_reader/providers/db_provider.dart';
+import 'package:qa_reader/providers/scan_list_provider.dart';
 import 'package:qa_reader/providers/ui_provider.dart';
 
 import '../widgets/widgets.dart';
@@ -17,7 +18,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Historial'),
         actions: [
-          IconButton(onPressed: (){}, icon: const Icon(Icons.delete_forever))
+          IconButton(onPressed: ()=> Provider.of<ScanListProvider>(context, listen: false).deleteAll(), icon: const Icon(Icons.delete_forever))
         ],
       ),
       body: const _HomePageBody(),
@@ -37,19 +38,19 @@ class _HomePageBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final tempScan = ScanModel(valor: 'https://www.udemy.com');
-    // DBProvider.db.nuevoScan(tempScan);
-    DBProvider.db.getScanById(8).then((value) => print('cosa: ${value?.valor}'));
-    DBProvider.db.getScansByType('http').then((value) => print('cosa: $value'));
+    
     final uiProvider = Provider.of<UIProvider>(context);
     final currentIndex = uiProvider.selectedMenuOpt;
 
+    final scanListProvider = Provider.of<ScanListProvider>(context, listen: false);
 
     switch (currentIndex) {
       case 0:
+      scanListProvider.loadScansByType('geo');
         return const MapsPage();
 
       case 1:
+      scanListProvider.loadScansByType('http');
         return const DirectionPage();
               
       default:
