@@ -12,12 +12,17 @@ class MapsPage extends StatelessWidget {
      final scanListProvider = Provider.of<ScanListProvider>(context);
       final scans = scanListProvider.scans;
     return ListView.builder(itemCount: scans.length, itemBuilder: (_, int i)=> 
-    ListTile(
-      leading: Icon(Icons.map, color: Theme.of(context).primaryColor,),
-      title: Text(scans[i].valor),
-      subtitle: Text(scans[i].id.toString()),
-      trailing: const Icon(Icons.keyboard_arrow_right_outlined, color: Colors.grey,),
-      onTap: () => print('abrir algo'),
+    Dismissible(
+      key: UniqueKey(),
+      background: Container(color: Colors.red),
+      onDismissed: ( DismissDirection direction ) => scanListProvider.deleteScanById(scans[i].id!),
+      child: ListTile(
+        leading: Icon(Icons.map, color: Theme.of(context).primaryColor,),
+        title: Text(scans[i].valor),
+        subtitle: Text(scans[i].id.toString()),
+        trailing: const Icon(Icons.keyboard_arrow_right_outlined, color: Colors.grey,),
+        onTap: () => print('abrir algo'),
+      ),
     ),
     );
   }
