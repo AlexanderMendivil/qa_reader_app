@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:qa_reader/utils/utils.dart';
 
 import '../providers/scan_list_provider.dart';
 
@@ -25,7 +26,7 @@ class ScanTiles extends StatelessWidget {
         title: Text(scans[i].valor),
         subtitle: Text(scans[i].id.toString()),
         trailing: const Icon(Icons.keyboard_arrow_right_outlined, color: Colors.grey,),
-        onTap: () => print('abrir algo'),
+        onTap: () => getLaunchUrl(context, scans[i]),
       ),
     ),
     );
